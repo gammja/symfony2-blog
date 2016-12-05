@@ -11,7 +11,15 @@ class PageController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BlogBundle:Page:index.html.twig');
+        $blogs = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BlogBundle:Blog')
+            ->getLatestBlogs();
+
+        return $this->render('BlogBundle:Page:index.html.twig', array(
+            'blogs' => $blogs
+        ));
     }
 
     public function aboutAction()
@@ -24,10 +32,10 @@ class PageController extends Controller
         $enquiry = new Enquiry();
 
         $form = $this->createForm(EnquiryType::class, $enquiry);
-        if ($request->isMethod($request::METHOD_POST)){
+        if ($request->isMethod($request::METHOD_POST)) {
             $form->handleRequest($request);
 
-            if ($form->isValid()){
+            if ($form->isValid()) {
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Contact enquiry from symblog')
@@ -39,8 +47,8 @@ class PageController extends Controller
 
 
                 $this->get('session')
-                     ->getFlashBag()
-                     ->add('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
+                    ->getFlashBag()
+                    ->add('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
 
                 return $this->redirect($this->generateUrl('BlogBundle_contact'));
             }
