@@ -2,9 +2,12 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('bundles/blog/css/blog.css') }}" type="text/css" rel="stylesheet" />
+
+    {% stylesheets '@BlogBundle/Resources/public/css/*' %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block sidebar %}
-    Sidebar content
+    {{ render(controller('BlogBundle:Page:sideBar')) }}
 {% endblock %}

@@ -17,7 +17,7 @@ BlogBundle_contact:
     methods: GET|POST
 
 BlogBundle_blog_show:
-  path: /{id}
+  path: /{id}/{slug}
   defaults: { _controller: BlogBundle:Blog:show }
   requirements:
     methods: GET

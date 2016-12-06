@@ -24,7 +24,8 @@
         "doctrine/doctrine-fixtures-bundle": "2.3.*",
         "doctrine/data-fixtures": "1.2.*",
         "doctrine/doctrine-migrations-bundle": "1.2.*",
-        "doctrine/migrations": "1.4.*"
+        "doctrine/migrations": "1.4.*",
+        "symfony/assetic-bundle": "2.8.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
@@ -47,7 +48,9 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "secure-http": false,
+        "disable-tls": true
     },
     "extra": {
         "symfony-app-dir": "app",
