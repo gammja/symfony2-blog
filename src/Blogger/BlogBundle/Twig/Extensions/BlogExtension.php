@@ -1,6 +1,6 @@
 <?php
 
-namespace Blogger\BlogBundle\Twig\Extension;
+namespace Blogger\BlogBundle\Twig\Extensions;
 
 class BlogExtension extends \Twig_Extension
 {
@@ -25,18 +25,18 @@ class BlogExtension extends \Twig_Extension
 
         if ($delta < 60){
             $time = $delta;
-            $duration = " second";
-        } elseif ($delta < 36000){
+            $duration = "second";
+        } elseif ($delta < 3600){
             $time = floor($delta / 60);
-            $duration = " minute";
+            $duration = "minute";
         } elseif ($delta < 86400){
             $time = floor($delta / 3600);
-            $duration = " hour";
+            $duration = "hour";
         } else {
             $time = floor($delta / 86400);
-            $duration = " day";
+            $duration = "day";
         }
-        $duration = $duration . (($time > 1) ? "s" : "");
+        $duration = $duration . (($time === 0 || $time > 1) ? "s" : "");
         return "$time $duration ago";
     }
 }
